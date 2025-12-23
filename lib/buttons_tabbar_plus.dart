@@ -313,8 +313,6 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
         widget.unselectedLabelStyle ?? const TextStyle(color: Colors.black),
         widget.labelStyle ?? const TextStyle(color: Colors.white),
         animationValue);
-    final Color? borderColor = Color.lerp(
-        widget.unselectedBorderColor, widget.borderColor, animationValue);
     final Color foregroundColor = textStyle?.color ?? Colors.black;
 
     final BoxDecoration? boxDecoration = BoxDecoration.lerp(
@@ -326,6 +324,9 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
           gradient: widget.unselectedDecoration?.gradient,
           borderRadius: widget.unselectedDecoration?.borderRadius ??
               BorderRadius.circular(widget.radius),
+          border: widget.borderWidth > 0 
+            ? Border.all(color: widget.unselectedBorderColor, width: widget.borderWidth)
+            : null,
         ),
         BoxDecoration(
           color: widget.decoration?.color ??
@@ -335,6 +336,9 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
           gradient: widget.decoration?.gradient,
           borderRadius: widget.decoration?.borderRadius ??
               BorderRadius.circular(widget.radius),
+          border: widget.borderWidth > 0 
+            ? Border.all(color: widget.borderColor, width: widget.borderWidth)
+            : null,
         ),
         animationValue);
 
@@ -381,13 +385,7 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
-              side: (widget.borderWidth == 0)
-                  ? BorderSide.none
-                  : BorderSide(
-                      color: borderColor ?? Colors.black,
-                      width: widget.borderWidth,
-                      style: BorderStyle.solid,
-                    ),
+              side: BorderSide.none,
               borderRadius: BorderRadius.circular(widget.radius),
             ),
           ),
