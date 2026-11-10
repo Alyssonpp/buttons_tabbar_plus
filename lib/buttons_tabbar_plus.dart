@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 // Default values from the Flutter's TabBar.
 const double _kTabHeight = 46.0;
@@ -52,7 +52,7 @@ class ButtonsTabBar extends StatefulWidget implements PreferredSizeWidget {
 
   /// The background [Color] of the button on its selected state.
   ///
-  /// If [Color] is not provided, [Theme.of(context).accentColor] is used.
+  /// If [Color] is not provided, [ColorScheme.secondary] is used.
   final Color? backgroundColor;
 
   /// The background [Color] of the button on its unselected state.

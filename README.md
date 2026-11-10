@@ -1,7 +1,7 @@
 # Buttons TabBar
 
-[![Publish](https://github.com/afonsocraposo/buttons_tabbar/actions/workflows/release.yml/badge.svg)](https://github.com/afonsocraposo/buttons_tabbar/actions/workflows/release.yml)
-[![Pub](https://img.shields.io/pub/v/buttons_tabbar.svg)](https://pub.dev/packages/buttons_tabbar)
+[![Publish](https://github.com/Alyssonpp/buttons_tabbar_plus/actions/workflows/release.yml/badge.svg)](https://github.com/Alyssonpp/buttons_tabbar_plus/actions/workflows/release.yml)
+[![Pub](https://img.shields.io/pub/v/buttons_tabbar_plus.svg)](https://pub.dev/packages/buttons_tabbar_plus)
 
 Buttons TabBar is an open-source Flutter package that provides a tabbar where each tab indicator is a toggle button. It allows you to create interactive and customizable tab bars for your Flutter applications.
 
@@ -18,6 +18,8 @@ Buttons TabBar is an open-source Flutter package that provides a tabbar where ea
 
 ## Installation
 
+Requires Flutter 3.47.0+ and Dart 3.13.0+.
+
 To use Buttons TabBar in your Flutter project, follow these steps:
 
 1. Add the dependency to your `pubspec.yaml` file:
@@ -26,17 +28,36 @@ To use Buttons TabBar in your Flutter project, follow these steps:
 dependencies:
   flutter:
     sdk: flutter
-  buttons_tabbar: ^1.3.14
+  material_ui: ^1.11.0
+  buttons_tabbar_plus: ^2.0.0
 ```
 
 2. Run `flutter pub get` to install the package.
+
+## Migrating from 1.x
+
+Version 2.0.0 uses Flutter's official standalone
+[`material_ui`](https://pub.dev/packages/material_ui) package. Replace
+`import 'package:flutter/material.dart';` with
+`import 'package:material_ui/material_ui.dart';` in consuming applications,
+including files that create `MaterialApp`, `ThemeData`, `Tab`, `TabController`,
+`DefaultTabController`, and `TabBarView`.
+
+The standalone Material types and the legacy Flutter Material types are distinct.
+Use `material_ui` consistently for widgets and controllers passed to
+`ButtonsTabBar`. `MaterialUiCompatibilityBridge` can support legacy descendants
+that read themes or localizations, but cannot convert public API types such as
+`TabController` or `Tab`.
+
+See Flutter's [official migration guide](https://docs.flutter.dev/release/breaking-changes/material-ui-and-cupertino-ui).
 
 ## Usage
 
 Import the package in your Dart file and customize the tab bar according to your needs:
 
 ```dart
-import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:buttons_tabbar_plus/buttons_tabbar_plus.dart';
+import 'package:material_ui/material_ui.dart';
 
 DefaultTabController(
   length: ...,
@@ -169,7 +190,7 @@ DefaultTabController(
 )
 ```
 
-For more examples, please refer to the [example.dart](https://github.com/Afonsocraposo/buttons_tabbar/tree/master/example/example.dart) file.
+For more examples, please refer to the [example.dart](example/example.dart) file.
 
 ## Properties
 
@@ -177,7 +198,7 @@ Below are the properties available for customizing the ButtonsTabBar. For more d
 
 | Property                   | Type              | Description                                                                                                                              | Default                                 |
 | -------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| backgroundColor            | `Color`           | The background color of the button on its selected state.                                                                                | `Theme.of(context).accentColor`         |
+| backgroundColor            | `Color`           | The background color of the button on its selected state.                                                                                | `Theme.of(context).colorScheme.secondary` |
 | borderColor                | `Color`           | The border color of the button on its selected state.                                                                                    | `Colors.black`                          |
 | borderWidth                | `double`          | The width of the solid border for each button.                                                                                           | `0`                                     |
 | buttonMargin               | `EdgeInsets`      | The `EdgeInsets` used for the margin of the buttons.                                                                                     | `EdgeInsets.all(4.0)`                   |

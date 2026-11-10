@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.0.0] - 10 November 2026
+
+- BREAKING: migrate to the official standalone `material_ui` package (^1.11.0). Applications must import `package:material_ui/material_ui.dart` for Material widgets, themes, and tab controllers used with this package.
+- Require Flutter 3.47.0 or newer and Dart 3.13.0 or newer.
+- Update dependencies to the latest versions compatible with the Flutter SDK.
+- Update the example and installation/migration instructions for `buttons_tabbar_plus`.
+
 ## [1.3.18] - 14 November 2025
 
 - fix: auto-sliding behavior when selecting a tab on Flutter 3.35+ caused by a fallback using the wrong tab key when currentContext was null. Correct LTR/RTL detection and safe RenderBox access restored.

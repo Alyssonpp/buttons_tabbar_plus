@@ -39,5 +39,8 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
+      - name: Run widget tests
+        run: flutter test
+
       - name: Run publish --dry-run
         run: flutter pub publish --dry-run
